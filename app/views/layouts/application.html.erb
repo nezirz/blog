@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="content">
+	<div class="row">
+		<div class="header"></div>
+</div>
+	<div class="row">
+		<div class="left_sidebar col-md-3">
+			<ul class="sidebar-nav" id="sidebar">     
+	          <li><%= link_to "All Posts", posts_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> </li>
+	          <li><%= link_to "New Post",new_post_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
+	          <li>
+	          	<% if user_signed_in? %>
+					<%= link_to "Log Out",destroy_user_session_path, method: :delete, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
+	          	<% else %>
+	          		<%= link_to "Sign In",new_user_session_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
+				<% end %>
+	          </li>
+	        </ul>
+		</div>
+
+		<div class="main_content col-md-9">
+		       <p class="notice"><%= notice %></p>
+		       <p class="alert"><%= alert %></p>
+		<%= yield %>
+		</div>
+	</div>	
+</div>
+</body>
+</html>
