@@ -9,31 +9,65 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="content">
-	<div class="row">
-		<div class="header"></div>
-</div>
-	<div class="row">
-		<div class="left_sidebar col-md-3">
-			<ul class="sidebar-nav" id="sidebar">     
-	          <li><%= link_to "All Posts", posts_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> </li>
-	          <li><%= link_to "New Post",new_post_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
-	          <li>
-	          	<% if user_signed_in? %>
-					<%= link_to "Log Out",destroy_user_session_path, method: :delete, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
-	          	<% else %>
-	          		<%= link_to "Sign In",new_user_session_path, :class=>"fa fa-eye fa-1x glyphicon glyphicon-link" %> 
-				<% end %>
-	          </li>
-	        </ul>
-		</div>
+<div class="row mTop15">
+	<div class="col-md-10 col-md-offset-1 text-right">
+			<ul class="list-inline">
+			<% if user_signed_in? %>
+				<li>Welcome </li>	
+				<li></li>
+		    	<li>Log Out</li>
 
-		<div class="main_content col-md-9">
-		       <p class="notice"><%= notice %></p>
-		       <p class="alert"><%= alert %></p>
-		<%= yield %>
-		</div>
-	</div>	
+		    <% else %>
+		    	<li>Sign In</li>
+		    	<li>Sign Up</li>
+		    <% end %>	
+		    </ul>
+	</div>
 </div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-8">
+			<h1>MINI BLOG</h1>
+		</div>
+	    <div class="col-md-4 text-right mTop30">
+		    <ul class="list-inline">
+		    	<li><%= link_to "Home", posts_path, {:class => "menuspan"} %></li>
+				<li><%= link_to "About", posts_path, {:class => "menuspan"} %></li>
+				<li><%= link_to "Contact", posts_path, {:class => "menuspan"} %></li>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<hr>
+	</div>
+</div>
+
+	<div class="col-md-10 col-md-offset-1">
+        <div class="col-md-9 main_container">
+     	<%= yield %>
+      	</div>        
+       <div class="col-md-3 right_sidebar">	  
+         <div class="col-md-12 text-right">
+ 			<% if user_signed_in? %>
+			    <ul class="list-inline">
+			    	<li><%= link_to "All Post", posts_path, {:class => "menuspan menufont"} %></li>
+			    	<li><%= link_to "New Post", posts_path, {:class => "menuspan menufont"} %></li>
+			    </ul>
+		    <% end %>
+		</div>
+     
+      	</div>        
+    </div>
+     
+
+
+
+	 <footer class="row">
+        <div class="col-md-12">
+        </div>
+      </footer>
 </body>
 </html>

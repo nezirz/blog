@@ -1,27 +1,31 @@
-<h1>All Posts</h1>
-<p><%= link_to "New Post", new_post_path %></p>
-<div>
-	<table>
-		<tr>
-			<td>Title</td>
-			<td>Body</td>
-		</tr>
+<div class="row">
 
 		<% @posts.each do |post| %>
-			<tr>
-				<td><%= post.title %></td>
-				<td><%= post.body %></td>
+			<div class="col-md-12 rowheight">
+					<div class="col-md-2">
+						<%= post.created_at.strftime('%v') %>
+					</div>			
+					<div class="col-md-8">
+						<span class="title"><%= post.title %></span>
+					</div>
 
+					<div class="col-md-2">
+						<div class="col-md-4">
+							<%= link_to "", post_path(post), :class=>"fa fa-eye fa-fw"   %>
+						</div>
+						<div class="col-md-4">
+							<%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %>
+						</div>
+						<div class="col-md-4">
+							<%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
+									method: :delete,
+									data:{ confirm: 'Are you sure ?' }%>
+						</div>
+					</div>
+			<hr>
+			<br/>
+			</div>
 
-			<% if user_signed_in? %>
-				<td><%= link_to "", post_path(post), :class=>"fa fa-eye fa-fw"   %></td>
-				<td><%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %></td>
-				<td><%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
-						method: :delete,
-						data:{ confirm: 'Are you sure ?' }%></td>
-			<% end %>
-			</tr>
 		<% end %>
 
-	</table>
 </div>
