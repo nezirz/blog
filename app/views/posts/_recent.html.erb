@@ -1,0 +1,12 @@
+<h4>Recent Posts</h4>
+<hr>
+<div>
+<% unless @recentposts.nil? %>
+	<% @recentposts.each do |r| %>
+		<span><%= link_to r.title.truncate(40), post_path(r) %></span>	
+	    <br/>
+	<% end %>
+<% end %>
+</div>
+<br/>
+<br/>

@@ -1,0 +1,17 @@
+<h4>Recent Comments</h4>
+<hr>
+<div>
+<% unless @recentcomments.nil? %>
+	<% @recentcomments.each do |r| %>
+			<div class="row">
+				<div class="col-md-4 font8">
+					<%= r.created_at.strftime('%v')%>
+				</div>
+				<div class="col-md-8">
+				  <%= link_to r.body.truncate(30), post_path(r) %>	
+				 </div> 
+			</div>
+	    <br/>
+	<% end %>
+<% end %>
+</div>

@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user! , except: [:index]
   
   def index
-    @posts=Post.all 
+    @posts=Post.all.reverse 
+    @recentposts = @posts.last(5)
+    @recentcomments = Comment.last(5).reverse
   end
 
   def show
@@ -11,6 +13,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+
+    @posts=Post.all.reverse 
+    @recentposts = @posts.last(5)
+    @recentcomments = Comment.last(5).reverse
   end
 
   def edit

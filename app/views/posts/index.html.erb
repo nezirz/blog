@@ -3,27 +3,32 @@
 		<% @posts.each do |post| %>
 			<div class="col-md-12 rowheight">
 					<div class="col-md-2">
-						<%= post.created_at.strftime('%v') %>
+						<%= post.created_at.strftime('%c') %>
 					</div>			
 					<div class="col-md-8">
-						<span class="title"><%= post.title %></span>
+						<span class="title"><%= post.title.truncate(50) %></span>
 					</div>
 
-					<div class="col-md-2">
-						<div class="col-md-4">
-							<%= link_to "", post_path(post), :class=>"fa fa-eye fa-fw"   %>
+
+					<% if user_signed_in? %>
+						<div class="col-md-2">
+							<div class="col-md-1">
+								<%= link_to "", post_path(post), :class=>"fa fa-eye fa-fw"   %>
+							</div>
+							<div class="col-md-1">
+								<%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %>
+							</div>
+							<div class="col-md-1">
+								<%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
+										method: :delete,
+										data:{ confirm: 'Are you sure ?' }%>
+							</div>
 						</div>
-						<div class="col-md-4">
-							<%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %>
-						</div>
-						<div class="col-md-4">
-							<%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
-									method: :delete,
-									data:{ confirm: 'Are you sure ?' }%>
-						</div>
-					</div>
-			<hr>
-			<br/>
+					<% end%>
+						
+						<br/>
+						<hr>
+
 			</div>
 
 		<% end %>
