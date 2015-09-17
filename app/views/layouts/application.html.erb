@@ -38,17 +38,17 @@
 
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<hr>
+	<hr>
 	</div>
 </div>
-
+<div class="row">
 	<div class="col-md-10 col-md-offset-1">
         
-        <div class="col-md-9 main_container">
+        <div class="col-md-9">
      		<%= yield %>
       	</div> 
 
-       <div class="col-md-3 right_sidebar">	  
+       <div class="col-md-2 right_sidebar">	  
 	         <div class="col-md-12 text-right">
 	 			<% if user_signed_in? %>
 				    <ul class="list-inline">
@@ -66,16 +66,16 @@
 
 			    <% end %>		    
 			</div>
-		<div class="row right">
-			<%= render '/posts/recent' %> 
-		</div>
-		<div class="row right">
-			<%= render '/comments/recent' %> 
-		</div>
+			<div class="row right">
+				<%= render '/posts/recent' %> 
+			</div>
+			<div class="row right">
+				<%= render '/comments/recent' %> 
+			</div>
      
       	</div>        
     </div>
-     
+</div>     
 
 
 

@@ -9,6 +9,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    @posts=Post.all.reverse 
+    @recentposts = @posts.last(5)
+    @recentcomments = Comment.last(5).reverse
   end
 
   def new

@@ -15,14 +15,21 @@
     </div>
   <% end %>
 
-
-
 	
-	<p><%= f.label :title %></p>
-	<p><%= f.text_field :title %></p>
-	<p><%= f.label :body %></p>
-	<p><%= f.text_area :body %></p>
-	<p><%= f.submit "Create Post" %></p>
-  <p><%= link_to "Cancel", :back %></p>
+  	<div><%= f.label :title %><br>
+    	 <%= f.text_field :title ,:size =>"70x10",:class =>"form-control"%><br>
+    	 <%= f.label :body %><br>
+        <%= f.text_area :body ,:size =>"70x10",:class =>"form-control"%><br>
+      <div class="col-md-12">
+          <div class="col-md-6">
+            <%= link_to "Cancel", :back  ,:class =>"form-control"%> 
+          </div>
+          <div class="col-md-6">
+            <%= f.submit "Create Post",:class =>"form-control" %>
+          </div>
+      </div>
+      <br>
+
+    </div>
 	<% end %>
 </dev>

@@ -1,28 +1,36 @@
-<h1>Post Preview</h1>
-<div>
-	<p>Title: <%= @post.title %></p>
-	<p>Body: <%= @post.body %></p>
 
-<h4>Current Comment's (<%= @post.comments.count %>) </h4>
-<div>
-	<% @post.comments.each do |comment| %>
-	<p><%= comment.body %></p>
-	<p><%= time_ago_in_words comment.created_at %> ago1 <%= link_to "Delete", [comment.post,comment],
-	method: :delete,
-	data:{ confirm: 'Are you sure ?'} %></p>
-	<% end %>
+<div class="row">
+
+		<h2><%= @post.title %></h2>
+    	<i><div class="font10">Created: <%= @post.created_at.strftime('%c') %>  by: <%= @post.user.email %></div></i>
+		<div class="font16 mTop30"><%= @post.body %></div>
+		<hr>
+
 </div>
+<div class="row">
+		<div class="font14 pLR20">Comment's (<%= @post.comments.count %>) </div>
+		<div class="pLR30">
+			<% @post.comments.each do |comment| %>
+				<i><span class="font10"><%= comment.body %></span></i><br>
+				<span class="font10"><%= time_ago_in_words(comment.created_at).capitalize %> ago <%= link_to "Delete", [comment.post,comment],
+				method: :delete,
+				data:{ confirm: 'Are you sure ?'} %></span>
+				<br>
+				<br>
+			<% end %>
 
-<h4>New Comment</h4>
-<div>
-	<%= form_for ([@post,@post.comments.build]) do |f| %>
-	<p><%= f.text_area :body %></p>
-	<p><%= f.submit "Add Comment" %></p>
-	<% end %>
-</div>
+		
+			<div class="pull-right form-group">
+				<div class="font14">New Comment</div>
+				<div>
+					<%= form_for ([@post,@post.comments.build]) do |f| %>
+						<div class="font10"><%= f.text_area :body,:size => "70x4",:class =>"form-control" %></div><br>
+						<div class="pull-right"><%= link_to "Back", posts_path %>   <%= link_to "Edit", edit_post_path(@post) %>       <%= f.submit "Add Comment",:class =>"form-control" %></div>
+					<% end %>
+				</div>
+			</div>
 
 
 
-	<%= link_to "Edit", edit_post_path(@post) %>
-	<%= link_to "Back", posts_path %>
+		</div>
 </div>
