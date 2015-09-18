@@ -6,5 +6,9 @@ class RegistrationsController < Devise::RegistrationsController
     
     redirect_to posts_path
   end
-
+  def after_sign_up_path_for(users)
+    flash[:notice] = 'Welcome! Please follow the steps!'
+    
+    redirect_to posts_path
+  end
 end

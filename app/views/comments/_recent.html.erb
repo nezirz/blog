@@ -4,12 +4,15 @@
 <% unless @recentcomments.nil? %>
 	<% @recentcomments.each do |r| %>
 			<div class="row">
-				<div class="col-md-4 font8">
-					<%= r.created_at.strftime('%v')%>
-				</div>
-				<div class="col-md-8">
-				  <%= link_to r.body.truncate(30), post_path(r) %>	
+				<div class="col-md-12">
+				  	<%= link_to r.body.truncate(30), '/posts/'+r.post_id.to_s %>	
 				 </div> 
+
+			</div>
+			<div class="row">
+				<div class="col-md-12 font8">
+					<%= r.created_at.strftime('%v')%>  by  <%= r.user.email %> 
+				</div>
 			</div>
 	    <br/>
 	<% end %>

@@ -2,8 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user! , except: [:index]
   
   def index
-    @posts=Post.all.reverse 
-    @recentposts = @posts.last(5)
+    @posts = Post.all.reverse 
+
+    @recentposts = Post.last(5).reverse
     @recentcomments = Comment.last(5).reverse
   end
 
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new
 
     @posts=Post.all.reverse 
-    @recentposts = @posts.last(5)
+    @recentposts = Post.last(5).reverse
     @recentcomments = Comment.last(5).reverse
   end
 
@@ -29,6 +30,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.user_id=current_user.id   
+    
     if @post.update(post_params)
       redirect_to @post
     else
@@ -38,6 +41,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id=current_user.id
+    
     if @post.save
       redirect_to @post
     else

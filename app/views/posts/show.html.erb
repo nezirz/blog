@@ -5,32 +5,55 @@
     	<i><div class="font10">Created: <%= @post.created_at.strftime('%c') %>  by: <%= @post.user.email %></div></i>
 		<div class="font16 mTop30"><%= @post.body %></div>
 		<hr>
-
 </div>
-<div class="row">
-		<div class="font14 pLR20">Comment's (<%= @post.comments.count %>) </div>
-		<div class="pLR30">
-			<% @post.comments.each do |comment| %>
-				<i><span class="font10"><%= comment.body %></span></i><br>
-				<span class="font10"><%= time_ago_in_words(comment.created_at).capitalize %> ago <%= link_to "Delete", [comment.post,comment],
-				method: :delete,
-				data:{ confirm: 'Are you sure ?'} %></span>
-				<br>
-				<br>
-			<% end %>
 
-		
-			<div class="pull-right form-group">
-				<div class="font14">New Comment</div>
-				<div>
-					<%= form_for ([@post,@post.comments.build]) do |f| %>
-						<div class="font10"><%= f.text_area :body,:size => "70x4",:class =>"form-control" %></div><br>
-						<div class="pull-right"><%= link_to "Back", posts_path %>   <%= link_to "Edit", edit_post_path(@post) %>       <%= f.submit "Add Comment",:class =>"form-control" %></div>
+<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<div class="font14">Comment's (<%= @post.comments.count %>) 
+				</div>
+				<div class="pLR10">
+					<% @post.comments.each do |comment| %>
+						<i><span class="font12"><%= comment.body %></span></i><br>
+
+						
+							<span class="font10">By <%= comment.user.email %> <%= time_ago_in_words(comment.created_at).capitalize %> ago 
+
+								<% if comment.user_id ==current_user.id %>
+									<%= link_to "Delete", [comment.post,comment],
+									method: :delete,
+									data:{ confirm: 'Are you sure ?'} %>
+								<% end %>	
+								<br>	
+							</span>
+											
+						<br>
 					<% end %>
 				</div>
 			</div>
+			<div class="col-md-6 pull-right form-group">		
+					<div class="font14">New Comment
+					</div>
 
+					<%= form_for ([@post,@post.comments.build]) do |f| %>
 
+						<div class="font10"><%= f.text_area :body,:size => "70x4",:class =>"form-control" %>
+						</div><br>
 
-		</div>
+						<div class="pull-right">
+							<div class="col-md-12">
+								<div class="col-md-4">
+									<%= link_to "Back", posts_path,:class =>"form-control"  %>
+								</div>
+								<div class="col-md-4">
+								   <%= link_to "Edit", edit_post_path(@post),:class =>"form-control"  %>
+							   </div>
+							   <div class="col-md-4">
+						          <%= f.submit "Add",:class =>"form-control" %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+			</div>
+		</div>	
 </div>

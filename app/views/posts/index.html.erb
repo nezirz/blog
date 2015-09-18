@@ -6,7 +6,8 @@
 						<%= post.created_at.strftime('%c') %>
 					</div>			
 					<div class="col-md-8">
-						<span class="title"><%= post.title.truncate(50) %></span>
+						<span class="title"><%= post.title.truncate(50) %> </span><br>
+						<span class="font10 pull-right"> (<%= post.comments.count %>) Comment's</span>
 					</div>
 
 
@@ -15,14 +16,17 @@
 							<div class="col-md-1">
 								<%= link_to "", post_path(post), :class=>"fa fa-eye fa-fw"   %>
 							</div>
-							<div class="col-md-1">
-								<%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %>
-							</div>
-							<div class="col-md-1">
-								<%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
-										method: :delete,
-										data:{ confirm: 'Are you sure ?' }%>
-							</div>
+
+							<% if post.user_id==current_user.id %>
+								<div class="col-md-1">
+									<%= link_to "", edit_post_path(post), :class=>"fa fa-pencil fa-fw"  %>
+								</div>
+								<div class="col-md-1">
+									<%= link_to "", post_path(post) , :class=>"fa fa-trash-o fa-fw", 
+											method: :delete,
+											data:{ confirm: 'Are you sure ?' }%>
+								</div>
+							<% end %>
 						</div>
 					<% end%>
 						
