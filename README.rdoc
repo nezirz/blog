@@ -5,23 +5,17 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.2.2
 
-* System dependencies
+* Rails 4.2.3
 
-* Configuration
+* Sqli3
 
-* Database creation
+* Gems:
+	Bootstrap-sass
+	Devise
+	Paperclip
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 MINI BLOG  MADE WITH RUBY (2.2.2) ON RAILS 4.2.3
