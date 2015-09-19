@@ -1,5 +1,5 @@
 <dev>
-	<%= form_for @post do |f| %>
+	<%= form_for @post, html: { multipart: true} do |f| %>
 
  <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -20,6 +20,7 @@
     	 <%= f.text_field :title ,:size =>"70x10",:class =>"form-control"%><br>
     	 <%= f.label :body %><br>
         <%= f.text_area :body ,:size =>"70x10",:class =>"form-control"%><br>
+        <%= f.file_field :photo %>
       <div class="row">
           <div class="col-md-2 pull-right">
             <%= f.submit "Save",:class =>"form-control" %>

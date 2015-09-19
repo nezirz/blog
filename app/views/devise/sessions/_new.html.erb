@@ -1,13 +1,19 @@
-<h4>Log In</h4>
-<hr>
+
 <%= form_for(:user, :url => session_path(:user)) do |f| %>
-  <%= f.text_field :email,:class =>"form-control" %><br/>
-  <%= f.password_field :password,:class =>"form-control" %><br/>
-  <%= f.check_box :remember_me %>
-  <%= f.label :remember_me , {:class=>"font8"}  %>
-  <%= link_to "Forgot your password?", new_password_path(:user), {:class=>"font8"}   %><br/>
-  <%= f.submit 'Sign in',:class =>"form-control" %>
+	<div class="row pull-right">
+		<div class="col-md-12">
+		  <div class="col-md-4">
+		  	  <%= f.text_field :email,:class =>"form-control" %><br/>
+  			  <!--<%= f.check_box :remember_me %>
+			  <%= f.label :remember_me , {:class=>"font8"}  %> -->
+		  </div>
+		  <div class="col-md-4">
+		  	  <%= f.password_field :password,:class =>"form-control" %><br/>
+		  	  <!-- <%= link_to "Forgot your password?", new_password_path(:user), {:class=>"font8"}   %> -->
+		  </div>
+		   <div class="col-md-4">
+			  <%= f.submit 'Sign in',:class =>"form-control" %>
+		  </div>
+		</div>
+	</div>
 <% end %>
-<br/>
-<br/>
-<br/>

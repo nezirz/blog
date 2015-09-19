@@ -1,27 +1,54 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user! , except: [:index]
+  before_action :authenticate_user! , except: [:index,:show]
   
   def index
-    @posts = Post.all.reverse 
+    if user_signed_in?
+      @posts = Post.where("user_id==#{current_user.id}").reverse 
 
-    @recentposts = Post.last(5).reverse
-    @recentcomments = Comment.last(5).reverse
+      @recentposts = Post.where("user_id==#{current_user.id}").last(5).reverse
+      @recentcomments = Comment.where("user_id==#{current_user.id}").last(5).reverse
+     
+    else
+
+      @posts = Post.all.reverse 
+
+      @recentposts = Post.last(5).reverse
+      @recentcomments = Comment.last(5).reverse 
+    end
+
   end
 
   def show
     @post = Post.find(params[:id])
 
-    @posts=Post.all.reverse 
-    @recentposts = @posts.last(5)
-    @recentcomments = Comment.last(5).reverse
+    if user_signed_in?
+
+      @recentposts = Post.where("user_id==#{current_user.id}").last(5).reverse
+      #@recentcomments = Comment.where("user_id==#{current_user.id}").last(5).reverse
+     
+    else
+
+      @recentposts = Post.last(5).reverse
+      @recentcomments = Comment.last(5).reverse 
+    end
   end
 
   def new
     @post = Post.new
 
-    @posts=Post.all.reverse 
-    @recentposts = Post.last(5).reverse
-    @recentcomments = Comment.last(5).reverse
+      if user_signed_in?
+        @posts = Post.where("user_id==#{current_user.id}").reverse 
+
+        @recentposts = Post.where("user_id==#{current_user.id}").last(5).reverse
+        @recentcomments = Comment.where("user_id==#{current_user.id}").last(5).reverse
+       
+      else
+
+        @posts = Post.all.reverse 
+
+        @recentposts = Post.last(5).reverse
+        @recentcomments = Comment.last(5).reverse 
+      end
   end
 
   def edit
@@ -60,6 +87,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :photo)
   end
 end

@@ -2,11 +2,14 @@
 <div class="row">
 
 		<h2><%= @post.title %></h2>
-    	<i><div class="font10">Created: <%= @post.created_at.strftime('%c') %>  by: <%= @post.user.email %></div></i>
+    	<i><div class="font10">Created: <%= @post.created_at.strftime('%c') %>  by: <%= @post.user.email %></div></i> 
+			 <% if @post.photo.exists? %>
+			 <%= image_tag @post.photo.url(:medium) ,:class =>"img"%>
+			 <% end %>
 		<div class="font16 mTop30"><%= @post.body %></div>
-		<hr>
-</div>
 
+</div>
+		<hr>
 <div class="row">
 		<div class="col-md-12">
 			<div class="col-md-6">
@@ -19,7 +22,7 @@
 						
 							<span class="font10">By <%= comment.user.email %> <%= time_ago_in_words(comment.created_at).capitalize %> ago 
 
-								<% if comment.user_id ==current_user.id %>
+								<% if user_signed_in? && comment.user_id ==current_user.id %>
 									<%= link_to "Delete", [comment.post,comment],
 									method: :delete,
 									data:{ confirm: 'Are you sure ?'} %>

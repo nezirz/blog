@@ -16,6 +16,8 @@
 				<li>Welcome </li>	
 				<li><%= current_user.email %></li>
 		    	<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete  %></li>
+		    <% else %>
+		    	<%= render 'devise/sessions/new' %> 
 		    <% end %>	
 		    </ul>
 	</div>
@@ -23,11 +25,14 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div class="col-md-8">
-			<h1>MINI BLOG</h1>
-			<i><h4>"Learning new stuff is easiest way to  not be bored!"</h4></i>
+			<a href="/posts/">
+				<h1>MINI BLOG</h1>
+				<i><h4>"Learning new stuff is easiest way to  not be bored!"</h4></i>
+			</a>
 		</div>
 	    <div class="col-md-4 text-right mTop5">
 		    <ul class="list-inline">
+
 		    	<li><%= link_to "Home", posts_path, {:class => "menuspan"} %></li>
 				<li><%= link_to "About", posts_path, {:class => "menuspan"} %></li>
 				<li><%= link_to "Contact", posts_path, {:class => "menuspan"} %></li>
@@ -55,14 +60,7 @@
 				    	<li><%= link_to "All Post", posts_path, {:class => "menuspan menufont"} %></li>
 				    	<li><%= link_to "New Post", new_post_path, {:class => "menuspan menufont"} %></li>
 				    </ul>
-				    <br/>
-				    <br/>
-				    <br/>
-				    <% else %>
-
-					<div class="row right">
-				    	<%= render 'devise/sessions/new' %> 
-					</div>
+				    <br/>				  
 
 			    <% end %>		    
 			</div>
