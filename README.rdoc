@@ -27,12 +27,12 @@ Things you may want to cover:
 MINI BLOG  MADE WITH RUBY (2.2.2) ON RAILS 4.2.3
 
 Index page:
-http://s4.postimg.org/g3wfm0f25/index.png "Mini Blog Index Page")
+http://s4.postimg.org/g3wfm0f25/index.png #Ruby #On #Rails #Mini #Blog #Index #Page
 
 Show page:
-http://s1.postimg.org/nxbge20pb/show.png "Mini Blog Index Page")
+http://s1.postimg.org/nxbge20pb/show.png  #Ruby #On #Rails #Mini #Blog #Show #Page
 
 Edit page:
-http://s13.postimg.org/8ize1cu4n/edit.png "Mini Blog Index Page")
+http://s13.postimg.org/8ize1cu4n/edit.png #Ruby #On #Rails #Mini #Blog #Edit #Page
 
 <tt>rake doc:app</tt>.
