@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
  
+  get 'contact/index', as: 'contact'
+
+  get 'about/index', as: 'about' 
+
   root 'posts#index'
   resources :posts do
     resources :comments
